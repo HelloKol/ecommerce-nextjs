@@ -1,0 +1,28 @@
+@import "./variables";
+
+@mixin section-spacing {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+@mixin responsiveContainer {
+    @media screen and (min-width: $smallMobile) {
+        padding: 0px 20px;
+    }
+    @media screen and (min-width: $largeMobile) {
+        padding: 0px 25px;
+    }
+    @media screen and (min-width: $tablet) {
+        padding: 0px 60px;
+    }
+    @media screen and (min-width: $tablet) {
+        padding: 0px 92px;
+    }
+    @media screen and (min-width: $tablet) {
+        padding: 0px auto;
+    }
+}
+// @mixin grid($columns) {
+//     @for $i from 1 through $columns{
+//         .col-
+//     }
+// }

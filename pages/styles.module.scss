@@ -1,0 +1,77 @@
+@import "../scss/layout";
+@import "../scss/variables";
+
+// -----------------GLOBAL---------------------------
+.landingSection {
+    @include section-spacing();
+}
+.heroContainer {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    @include responsiveContainer();
+}
+.heroContainer {
+    .name {
+        width: 80%;
+        z-index: 1;
+        top: 50%;
+        left: 10%;
+        position: absolute;
+        transform: translateY(-50%);
+        text-transform: uppercase;
+        font-size: clamp(2rem, 5.5vw, 20rem);
+    }
+    .discoverNow {
+        top: 85%;
+        left: 10%;
+        position: absolute;
+        color: white;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+    .imageOne {
+        width: 100%;
+        display: none;
+
+        position: relative;
+    }
+    .imageTwo {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        grid-row: 1;
+        grid-column: 7/ -1;
+    }
+}
+
+// -----------------MOBILE---------------------------
+@media screen and (min-width: $smallMobile) {
+}
+// -----------------LARGE MOBILE---------------------------
+@media screen and (min-width: $largeMobile) {
+}
+// -----------------TABLET---------------------------
+@media screen and (min-width: $tablet) {
+    .heroContainer {
+        .imageOne {
+            display: block;
+            grid-column: 1 / span 4;
+        }
+    }
+}
+// -----------------DESKTOP---------------------------
+@media screen and (min-width: $desktop) {
+    .heroContainer {
+        .imageOne {
+            grid-column: 1 / span 3;
+        }
+    }
+}
+// -----------------HD DESKTOP---------------------------
+@media screen and (min-width: $hdDesktop) {
+    .heroContainer {
+        .imageOne {
+            grid-column: 1 / span 2;
+        }
+    }
+}

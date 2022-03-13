@@ -1,0 +1,17 @@
+@import "../../../scss/layout";
+
+.arrivalsSection {
+    @include section-spacing();
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 20px;
+    @include responsiveContainer();
+}
+
+.imagWrapper {
+    width: 280px;
+    height: 400px;
+}

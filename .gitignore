@@ -5,6 +5,14 @@
 /.pnp
 .pnp.js
 
+# studio
+/ecommerce/node_modules
+/ecommerce/build
+/ecommerce/dist
+/ecommerce/.DS_Store
+/ecommerce/.env
+/ecommerce/.env.development
+
 # testing
 /coverage
 
