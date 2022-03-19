@@ -1,4 +1,5 @@
 @import "../../scss/layout";
+@import "../../scss/variables";
 
 // -----------------GLOBAL---------------------------
 .desktopHeader {
@@ -6,22 +7,98 @@
     z-index: 1;
     padding-top: 5px;
     position: sticky;
-}
-.headerItems {
-    display: flex;
-    list-style: none;
-    justify-content: space-between;
-    align-items: center;
-    @include responsiveContainer();
-
-    li a {
-        color: white;
-        text-decoration: none;
-        text-transform: uppercase;
-    }
-    li:nth-child(4) {
-        a {
-            font-size: clamp(2rem, 2vw, 3rem);
+    .navigationList {
+        display: flex;
+        list-style: none;
+        justify-content: space-between;
+        align-items: center;
+        @include responsiveContainer();
+        li a {
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        li:nth-child(4) {
+            a {
+                font-size: clamp(2rem, 2vw, 3rem);
+            }
         }
     }
+}
+
+.mobileHeader {
+    .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 100vw;
+        background: #fff;
+        z-index: -1;
+    }
+    .menuIcon {
+        outline: none;
+        border: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: pointer;
+        position: absolute;
+        top: 18px;
+        left: 15px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: transparent;
+    }
+    .navigationList {
+        list-style: none;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        li {
+            text-align: center;
+            margin: 50px 0px;
+        }
+        li a {
+            position: relative;
+            top: 50px;
+            left: -25px;
+            padding: 15px;
+            color: black;
+            font-size: x-large;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+    }
+}
+
+// -----------------MOBILE---------------------------
+@media only screen and (min-width: $smallMobile) {
+    .desktopHeader {
+        display: none;
+    }
+}
+
+// -----------------Large Mobile---------------------
+@media only screen and (min-width: $largeMobile) {
+}
+
+// -----------------Tablet---------------------------
+@media only screen and (min-width: $tablet) {
+    .desktopHeader {
+        display: block;
+    }
+    .mobileHeader {
+        display: none;
+    }
+}
+
+// -----------------Desktop--------------------------
+@media only screen and (min-width: $desktop) {
+}
+// -----------------HdDesktop------------------------
+@media only screen and (min-width: $hdDesktop) {
 }

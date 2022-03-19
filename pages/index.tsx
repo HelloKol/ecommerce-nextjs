@@ -41,13 +41,11 @@ const Home: NextPage<Props> = (props) => {
           <h1 className={styles.name}>
             Summer 2022 <br /> new collection
           </h1>
-
           <span>
             <Link href="/">
               <a className={styles.discoverNow}>Discover now</a>
             </Link>
           </span>
-
           <div className={styles.imageTwo}>
             <Image
               src={imgSrcTwo}
@@ -61,11 +59,14 @@ const Home: NextPage<Props> = (props) => {
         </div>
       );
     });
+
   return (
     <section className={styles.landingSection}>
       <div className={styles.container}>
-        {renderHero()}
-        <Arrivals jackets={jackets} />
+        <div className={styles.renderHero}>{renderHero()}</div>
+        <div className={styles.allSections}>
+          <Arrivals jackets={jackets} />
+        </div>
       </div>
     </section>
   );
