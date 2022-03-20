@@ -18,9 +18,10 @@ const Arrivals: NextPage<JacketsProp> = ({ jackets }) => {
 
   const slide = (shift: number) => {
     if (productListRef.current) {
-      productListRef.current.scroll({ behavior: "smooth" });
-      productListRef.current.scrollLeft += shift;
+      let productsPos = productListRef.current.scrollLeft
+      productsPos += shift;
       setscrollX(scrollX + shift);
+      productListRef.current.scroll({left:productsPos, behavior: "smooth" });
 
       if (
         Math.floor(
