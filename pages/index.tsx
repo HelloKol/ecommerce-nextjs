@@ -1,5 +1,7 @@
+import { useRef } from "react";
 import type { NextPage } from "next";
 import Image from "next/image";
+import { useSpring, useTransition, animated, config } from "react-spring";
 import { sanityClient, urlFor } from "../lib/sanity";
 import { Arrivals } from "../components";
 import { FeaturedType, JacketsType } from "../types/types";
@@ -17,8 +19,33 @@ interface jacketsInterface {
 }
 type Props = featuredInterface & jacketsInterface;
 
+const collectionTitle = ["Summer 2022", "new collection"];
+
 const Home: NextPage<Props> = (props) => {
   const { featured, jackets } = props;
+
+  const imgRef = useRef(null);
+  const ctaRef = useRef(null);
+
+  const imgFade = useSpring({
+    from: { opacity: 0, scale: 0.95 },
+    to: { opacity: 1, scale: 1 },
+    config: config.molasses,
+  });
+
+  const trail = useTransition(collectionTitle, {
+    from: { opacity: 0, height: 0 },
+    enter: { opacity: 1, height: 50 },
+    delay: 400,
+    trail: 200,
+  });
+
+  const ctaFade = useSpring({
+    from: { opacity: 0 },
+    opacity: 1,
+    delay: 700,
+  });
+
   const renderHero = () =>
     featured.map((item) => {
       const { _id, name, imageOne, imageTwo } = item;
@@ -28,7 +55,11 @@ const Home: NextPage<Props> = (props) => {
 
       return (
         <div key={_id} className={styles.heroContainer}>
-          <div className={styles.imageOne}>
+          <animated.div
+            className={styles.imageOne}
+            style={imgFade}
+            ref={imgRef}
+          >
             <Image
               src={imgSrcOne}
               alt={name}
@@ -37,16 +68,24 @@ const Home: NextPage<Props> = (props) => {
               quality={100}
               objectFit="cover"
             />
+          </animated.div>
+          <div className={styles.nameContainer}>
+            {trail((trailStyles, item) => (
+              <animated.h1 style={trailStyles} className={styles.name}>
+                {item}
+              </animated.h1>
+            ))}
           </div>
-          <h1 className={styles.name}>
-            Summer 2022 <br /> new collection
-          </h1>
-          <span>
+          <animated.span style={ctaFade} ref={ctaRef}>
             <Link href="/">
               <a className={styles.discoverNow}>Discover now</a>
             </Link>
-          </span>
-          <div className={styles.imageTwo}>
+          </animated.span>
+          <animated.div
+            className={styles.imageTwo}
+            style={imgFade}
+            ref={imgRef}
+          >
             <Image
               src={imgSrcTwo}
               alt={name}
@@ -55,7 +94,7 @@ const Home: NextPage<Props> = (props) => {
               layout="fill"
               objectFit="cover"
             />
-          </div>
+          </animated.div>
         </div>
       );
     });

@@ -18,10 +18,10 @@ const Arrivals: NextPage<JacketsProp> = ({ jackets }) => {
 
   const slide = (shift: number) => {
     if (productListRef.current) {
-      let productsPos = productListRef.current.scrollLeft
+      let productsPos = productListRef.current.scrollLeft;
       productsPos += shift;
       setscrollX(scrollX + shift);
-      productListRef.current.scroll({left:productsPos, behavior: "smooth" });
+      productListRef.current.scroll({ left: productsPos, behavior: "smooth" });
 
       if (
         Math.floor(
@@ -64,9 +64,13 @@ const Arrivals: NextPage<JacketsProp> = ({ jackets }) => {
   return (
     <section className={styles.arrivalsSection}>
       <div className={styles.container}>
-        <button onClick={() => slide(-500)}>prev</button>
-        <button onClick={() => slide(500)}>next</button>
-        {renderProducts()}
+        <div className={styles.content}>
+          <div className={styles.btnGroup}>
+            <button onClick={() => slide(-500)}>prev</button>
+            <button onClick={() => slide(500)}>next</button>
+          </div>
+          {renderProducts()}
+        </div>
       </div>
     </section>
   );
