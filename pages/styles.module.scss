@@ -5,85 +5,82 @@
 .landingSection {
   @include section-spacing();
 }
-.heroContainer {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
+.container {
   @include responsiveContainer();
-  .nameContainer {
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    top: 45%;
-    left: 10%;
-    position: absolute;
-    transform: translateY(-45%);
+}
+.description {
+  width: 80%;
+}
+.shopNow {
+  .circle {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    border: 2px solid black;
   }
-  .name {
-    width: 100%;
-    text-transform: uppercase;
-    font-size: clamp(2rem, 5.5vw, 20rem);
+  p {
+    position: relative;
+    top: 25%;
+    right: 50%;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 40px;
+    transform: rotate(-10deg);
+    background-color: white;
   }
-  .discoverNow {
-    top: 80%;
-    left: 10%;
+}
+.featuredImg {
+  position: relative;
+  .checkOut {
     position: absolute;
-    color: white;
+    top: 0;
+    right: -50px;
+  }
+}
+.socialLinks {
+  list-style: none;
+  display: flex;
+  li a {
+    margin-right: 30px;
+
+    color: black;
     text-decoration: none;
-    text-transform: uppercase;
   }
-  .imageOne {
-    width: 100%;
-    display: none;
-    position: relative;
-  }
-  .imageTwo {
-    width: 100%;
-    height: 100vh;
-    position: relative;
-    grid-row: 1;
-    grid-column: 7/ -1;
-  }
-}
-
-.renderHero {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.allSections {
-  display: block;
-  position: absolute;
-  top: 100%;
 }
 // -----------------MOBILE---------------------------
 @media screen and (min-width: $smallMobile) {
+  .featuredImg {
+    height: 330px;
+    max-width: 230px;
+    width: 100%;
+    margin: 50px 20px;
+  }
+  .shopNow {
+    margin-left: 100px;
+  }
 }
 // -----------------LARGE MOBILE---------------------------
 @media screen and (min-width: $largeMobile) {
+  .featuredImg {
+    height: 500px;
+    max-width: 400px;
+    width: 100%;
+    margin: 50px 20px;
+  }
+  .shopNow {
+    margin-left: 200px;
+  }
 }
 // -----------------TABLET---------------------------
 @media screen and (min-width: $tablet) {
-  .heroContainer {
-    .imageOne {
-      display: block;
-      grid-column: 1 / span 4;
-    }
+  .description {
+    width: 320px;
   }
 }
 // -----------------DESKTOP---------------------------
 @media screen and (min-width: $desktop) {
-  .heroContainer {
-    .imageOne {
-      grid-column: 1 / span 3;
-    }
-  }
 }
 // -----------------HD DESKTOP---------------------------
 @media screen and (min-width: $hdDesktop) {
-  .heroContainer {
-    .imageOne {
-      grid-column: 1 / span 2;
-    }
-  }
 }

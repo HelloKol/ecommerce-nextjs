@@ -11,30 +11,6 @@ interface JacketsProp {
 }
 
 const Arrivals: NextPage<JacketsProp> = ({ jackets }) => {
-  const [scrollX, setscrollX] = useState(0); // For detecting start scroll postion
-  const [scrolEnd, setscrolEnd] = useState(false); // For detecting end of scrolling
-
-  const productListRef = useRef<HTMLDivElement>(null);
-
-  const slide = (shift: number) => {
-    if (productListRef.current) {
-      let productsPos = productListRef.current.scrollLeft;
-      productsPos += shift;
-      setscrollX(scrollX + shift);
-      productListRef.current.scroll({ left: productsPos, behavior: "smooth" });
-
-      if (
-        Math.floor(
-          productListRef.current.scrollWidth - productListRef.current.scrollLeft
-        ) <= productListRef.current.offsetWidth
-      ) {
-        setscrolEnd(true);
-      } else {
-        setscrolEnd(false);
-      }
-    }
-  };
-
   const renderProducts = () => {
     const products = jackets.map((item) => {
       const { _id, name, image } = item;
@@ -54,23 +30,13 @@ const Arrivals: NextPage<JacketsProp> = ({ jackets }) => {
         </div>
       );
     });
-    return (
-      <div ref={productListRef} className={styles.productsList}>
-        {products}
-      </div>
-    );
+    return <div className={styles.productsList}>{products}</div>;
   };
 
   return (
     <section className={styles.arrivalsSection}>
       <div className={styles.container}>
-        <div className={styles.content}>
-          <div className={styles.btnGroup}>
-            <button onClick={() => slide(-500)}>prev</button>
-            <button onClick={() => slide(500)}>next</button>
-          </div>
-          {renderProducts()}
-        </div>
+        <div className={styles.content}>{renderProducts()}</div>
       </div>
     </section>
   );

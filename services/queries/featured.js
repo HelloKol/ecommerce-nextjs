@@ -1,8 +1,7 @@
 const featuredQuery = `*[_type == "featured"]{
     _id,
     name,
-    imageOne,
-    imageTwo,
+    image,
     description,
   }`;
 

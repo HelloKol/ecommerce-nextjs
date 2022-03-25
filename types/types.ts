@@ -1,8 +1,7 @@
 export interface FeaturedType{
     _id:string
     name:string
-    imageOne?:string
-    imageTwo?:string
+    image:string
     description:string
 }
 

@@ -19,12 +19,10 @@ const navigationLinks = [
 
 const variants = {
   open: {
-    // opacity: 1,
     // height: 10,
     display: "block",
   },
   closed: {
-    // opacity: 0,
     // height: 0,
     display: "none",
   },

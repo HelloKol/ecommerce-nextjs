@@ -26,7 +26,6 @@
   overflow-y: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
-  @include grid(15);
 }
 .productItem {
   scroll-snap-align: start;

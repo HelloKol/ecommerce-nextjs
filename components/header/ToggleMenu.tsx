@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { motion, SVGMotionProps } from "framer-motion";
 
 import styles from "./styles.module.scss";
@@ -12,7 +11,7 @@ const Path = (
     <motion.path
       fill="transparent"
       strokeWidth="3"
-      stroke="gray"
+      stroke="black"
       strokeLinecap="round"
       {...props}
     />
@@ -35,7 +34,7 @@ export const ToggleMenu = ({ toggle }) => {
             closed: { opacity: 1 },
             open: { opacity: 0 },
           }}
-          transition={{ duration: 0.1 }}
+          transition={{ duration: 0.2 }}
         />
         <Path
           variants={{

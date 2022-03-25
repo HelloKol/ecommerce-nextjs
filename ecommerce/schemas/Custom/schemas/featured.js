@@ -24,16 +24,8 @@ export default {
       ],
     },
     {
-      name: "imageOne",
-      title: "Image One",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-    },
-    {
-      name: "imageTwo",
-      title: "Image Two",
+      name: "image",
+      title: "Image",
       type: "image",
       options: {
         hotspot: true,
