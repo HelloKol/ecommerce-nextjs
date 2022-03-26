@@ -5,7 +5,7 @@
   @include section-spacing();
 }
 .container {
-  @include responsiveContainer();
+  @include responsive-container();
 }
 .title {
   font-size: clamp(2rem, 4vw, 4rem);
@@ -26,12 +26,12 @@
     padding: 20px;
     padding-left: 0;
   }
+  .stats {
+    padding-top: 20px;
+  }
 }
 // -----------------LARGE MOBILE---------------------------
 @media screen and (min-width: $largeMobile) {
-  .title {
-    padding-top: 20px;
-  }
   .featuredImage {
     padding: 40px;
     padding-left: 0;
@@ -50,8 +50,12 @@
   .aboutContent {
     grid-column: 7 / -1;
   }
+  .title {
+    padding-top: 0;
+  }
   .stats {
     justify-content: flex-start;
+    gap: 40px;
   }
 }
 // -----------------DESKTOP---------------------------
@@ -60,10 +64,21 @@
     display: flex;
     gap: 30px;
   }
+  .stats {
+    padding-top: 40px;
+    gap: 60px;
+  }
 }
 // -----------------HD DESKTOP---------------------------
 @media screen and (min-width: $hdDesktop) {
+  .aboutContent {
+    align-self: center;
+  }
   .copy {
-    gap: 50px;
+    gap: 60px;
+  }
+  .stats {
+    padding-top: 50px;
+    gap: 80px;
   }
 }

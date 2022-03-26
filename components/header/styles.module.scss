@@ -12,7 +12,7 @@
     list-style: none;
     justify-content: space-between;
     align-items: center;
-    @include responsiveContainer();
+    @include responsive-container();
     li a {
       color: black;
       text-decoration: none;

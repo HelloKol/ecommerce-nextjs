@@ -20,4 +20,15 @@ const dressesQuery = `*[_type == "dresses"]{
     description,
   }`;
 
-export { jacketsQuery, dressesQuery };
+  const coatsQuery = `*[_type == "coats"]{
+    _id,
+    name,
+    gender,
+    color,
+    price,
+    stock,
+    image,
+    description,
+  }`;
+
+export { jacketsQuery, dressesQuery , coatsQuery};

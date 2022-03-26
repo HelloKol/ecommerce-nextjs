@@ -1,4 +1,4 @@
 import featuredQuery from "./queries/featured";
-import { jacketsQuery, dressesQuery } from "./queries/allProducts";
+import { jacketsQuery, dressesQuery, coatsQuery } from "./queries/allProducts";
 
-export { featuredQuery, jacketsQuery, dressesQuery };
+export { featuredQuery, jacketsQuery, dressesQuery, coatsQuery };

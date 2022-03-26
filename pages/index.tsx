@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useSpring, useTransition, animated, config } from "react-spring";
 import { sanityClient, urlFor } from "../lib/sanity";
 
-import { NewProducts, About } from "../components";
+import { NewProducts, About, LookBook, FollowUs } from "../components";
+import { featuredQuery, dressesQuery, coatsQuery } from "../services";
 import { FeaturedType, AllProductsType } from "../types/types";
-import { featuredQuery, dressesQuery } from "../services";
 import styles from "./styles.module.scss";
 
 interface FeaturedInterface {
@@ -15,13 +15,14 @@ interface FeaturedInterface {
 
 interface DressesInterface {
   dresses: AllProductsType[];
+  coats: AllProductsType[];
 }
 type Props = FeaturedInterface & DressesInterface;
 
 const collectionTitle = ["Summer 2022", "new collection"];
 
 const Home: NextPage<Props> = (props) => {
-  const { featured, dresses } = props;
+  const { featured, dresses, coats } = props;
 
   const renderHero = () => {
     const { name, description, image } = featured[0];
@@ -89,6 +90,8 @@ const Home: NextPage<Props> = (props) => {
       {renderHero()}
       <NewProducts dresses={dresses} />
       <About />
+      <LookBook lookBook={coats} />
+      <FollowUs />
     </main>
   );
 };
@@ -96,7 +99,8 @@ const Home: NextPage<Props> = (props) => {
 export async function getStaticProps() {
   const featured = await sanityClient.fetch(featuredQuery);
   const dresses = await sanityClient.fetch(dressesQuery);
-  return { props: { featured, dresses } };
+  const coats = await sanityClient.fetch(coatsQuery);
+  return { props: { featured, dresses, coats } };
 }
 
 export default Home;

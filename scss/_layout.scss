@@ -4,7 +4,7 @@
   padding-top: 20px;
   padding-bottom: 20px;
 }
-@mixin responsiveContainer {
+@mixin responsive-container {
   @media screen and (min-width: $smallMobile) {
     margin-left: 20px;
     margin-right: 20px;
@@ -24,6 +24,7 @@
   @media screen and (min-width: $hdDesktop) {
     margin-left: 115px;
     margin-right: 115px;
+    // max-width: 1400px;
   }
 }
 @mixin grid($columns, $rowGap, $columnGap) {

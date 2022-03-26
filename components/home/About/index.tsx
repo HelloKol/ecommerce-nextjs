@@ -15,11 +15,13 @@ const About: NextPage = () => {
           <div className={styles.copy}>
             <p className={styles.bodycopyLeft}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Pellentesque euismod, urna eu tincidunt consectetur.
+              Pellentesque euismod, urna eu tincidunt consectetur. Aliquam nunc
+              eget egestas nunc nisl euismod nunc.
             </p>
             <p className={styles.bodycopyRight}>
               Aliquam nunc eget egestas nunc nisl euismod nunc. Vestibulum ante
-              ipsum primis in faucibus orci luctus et ultrices.
+              ipsum primis in faucibus orci luctus et ultrices.Lorem ipsum dolor
+              sit amet, consectetur adipiscing elit.
             </p>
           </div>
           <div className={styles.stats}>
