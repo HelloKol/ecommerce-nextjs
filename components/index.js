@@ -1,6 +1,5 @@
 import Layout from "./layout";
 import Header from "./header";
-import Arrivals from "./home/Arrivals";
-import TestList from "./TestList";
+import NewProducts from "./home/New products";
 
-export { Layout, Header, Arrivals ,TestList};
+export { Layout, Header, NewProducts };

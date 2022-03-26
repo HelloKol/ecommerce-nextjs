@@ -1,6 +1,15 @@
-// components
 @import "../../../scss/variables";
 @import "../../../scss/layout";
+
+.aboutSection {
+  @include section-spacing();
+}
+.container {
+  @include responsiveContainer();
+}
+
+.aboutSection {
+}
 
 // -----------------MOBILE---------------------------
 @media screen and (min-width: $smallMobile) {

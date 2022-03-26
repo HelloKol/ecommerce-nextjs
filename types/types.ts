@@ -5,7 +5,7 @@ export interface FeaturedType{
     description:string
 }
 
-export interface JacketsType{
+export interface AllProductsType{
     _id:string
     name:string
     gender:string

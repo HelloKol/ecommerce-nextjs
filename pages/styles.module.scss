@@ -2,16 +2,18 @@
 @import "../scss/variables";
 
 // -----------------GLOBAL---------------------------
-.landingSection {
+.landingSection,
+.heroSection {
   @include section-spacing();
 }
 .container {
   @include responsiveContainer();
 }
-.description {
-  width: 80%;
+.title {
+  font-size: clamp(2rem, 4.8vw, 6rem);
 }
 .shopNow {
+  display: flex;
   .circle {
     height: 70px;
     width: 70px;
@@ -34,8 +36,9 @@
   position: relative;
   .checkOut {
     position: absolute;
-    top: 0;
-    right: -50px;
+    top: 50px;
+    bottom: 0;
+    right: 0;
   }
 }
 .socialLinks {
@@ -43,44 +46,112 @@
   display: flex;
   li a {
     margin-right: 30px;
-
     color: black;
     text-decoration: none;
   }
 }
+
 // -----------------MOBILE---------------------------
 @media screen and (min-width: $smallMobile) {
+  .container {
+    @include grid(1, $rowSmall, $rowSmall);
+  }
   .featuredImg {
-    height: 330px;
-    max-width: 230px;
-    width: 100%;
-    margin: 50px 20px;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-right: 20px;
+  }
+  .explore,
+  .socialLinks {
+    padding-left: 20px;
   }
   .shopNow {
-    margin-left: 100px;
+    padding: 30px 0;
+    justify-content: center;
+  }
+  .explore {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    img {
+      height: 20px;
+      width: 20px;
+    }
   }
 }
 // -----------------LARGE MOBILE---------------------------
 @media screen and (min-width: $largeMobile) {
-  .featuredImg {
-    height: 500px;
-    max-width: 400px;
-    width: 100%;
-    margin: 50px 20px;
+  .container {
+    @include grid(1, $rowLarge, $colLarge);
   }
-  .shopNow {
-    margin-left: 200px;
+  .featuredImg {
+    padding-left: 40px;
+    padding-top: 40px;
+    padding-right: 40px;
+  }
+  .explore,
+  .socialLinks {
+    padding-left: 40px;
+  }
+  .checkOut {
+    display: block;
   }
 }
 // -----------------TABLET---------------------------
 @media screen and (min-width: $tablet) {
+  .container {
+    @include grid(12, $rowTablet, $colTablet);
+  }
+  .leftHero {
+    grid-column: 1 / span 5;
+    align-self: center;
+  }
   .description {
-    width: 320px;
+    padding-left: 50px;
+  }
+  .rightHero {
+    grid-column: 6 / -2;
+    .featuredImg {
+      max-width: 600px;
+      .checkOut {
+        top: 80%;
+      }
+    }
+  }
+  .socialLinks {
+    padding: 0;
+    flex-direction: column;
+    justify-content: center;
+    li {
+      margin-top: 50px;
+      margin-bottom: 50px;
+      transform: rotate(-90deg);
+      transform-origin: top;
+    }
+  }
+  .explore {
+    padding-left: 40px;
+    grid-column: 6 / span 1;
   }
 }
 // -----------------DESKTOP---------------------------
 @media screen and (min-width: $desktop) {
+  .container {
+    @include grid(12, $rowDesktop, $colDesktop);
+  }
 }
 // -----------------HD DESKTOP---------------------------
 @media screen and (min-width: $hdDesktop) {
+  .container {
+    @include grid(12, $rowHD, $rowHD);
+  }
+  .shopNow {
+    display: block;
+    padding: 50px 150px;
+  }
+  .rightHero {
+    grid-column: 6 / -2;
+  }
 }

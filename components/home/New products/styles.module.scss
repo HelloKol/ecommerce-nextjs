@@ -1,6 +1,29 @@
-// components
 @import "../../../scss/variables";
 @import "../../../scss/layout";
+
+.arrivalsSection {
+  @include section-spacing();
+}
+.container {
+  @include responsiveContainer();
+}
+.productsList {
+  margin: 0 auto;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 2.5rem;
+  padding: 1rem;
+  overflow-y: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  list-style: none;
+}
+.productItem {
+  scroll-snap-align: start;
+  width: 300px;
+  max-width: none;
+  object-fit: contain;
+}
 
 // -----------------MOBILE---------------------------
 @media screen and (min-width: $smallMobile) {

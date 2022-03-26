@@ -3,24 +3,25 @@ import type { NextPage } from "next";
 import Image from "next/image";
 import { useSpring, useTransition, animated, config } from "react-spring";
 import { sanityClient, urlFor } from "../lib/sanity";
-import { FeaturedType, JacketsType } from "../types/types";
-import { featuredQuery, jacketsQuery } from "../services";
 
+import { NewProducts } from "../components";
+import { FeaturedType, AllProductsType } from "../types/types";
+import { featuredQuery, dressesQuery } from "../services";
 import styles from "./styles.module.scss";
 
-interface featuredInterface {
+interface FeaturedInterface {
   featured: FeaturedType[];
 }
 
-interface jacketsInterface {
-  jackets: JacketsType[];
+interface DressesInterface {
+  dresses: AllProductsType[];
 }
-type Props = featuredInterface & jacketsInterface;
+type Props = FeaturedInterface & DressesInterface;
 
 const collectionTitle = ["Summer 2022", "new collection"];
 
 const Home: NextPage<Props> = (props) => {
-  const { featured } = props;
+  const { featured, dresses } = props;
 
   const renderHero = () => {
     const { name, description, image } = featured[0];
@@ -28,29 +29,40 @@ const Home: NextPage<Props> = (props) => {
     const imgSrc = image != null ? urlFor(image).url() : fallBack;
 
     return (
-      <>
-        <h1>{name}</h1>
-        <p className={styles.description}>
-          {description[0]["children"][0].text}
-        </p>
-        <div className={styles.shopNow}>
-          <div className={styles.circle}>
-            <p>Shop now</p>
+      <section className={styles.heroSection}>
+        <div className={styles.container}>
+          <div className={styles.leftHero}>
+            <h1 className={styles.title}>{name}</h1>
+            <p className={styles.description}>
+              Shop our endless selection of clothing and accessories for you and
+              your loved ones! You'll find pretty pastels, bold dresses, trendy
+              separates.
+              {/* {description[0]["children"][0].text} */}
+            </p>
+            <div className={styles.shopNow}>
+              <div className={styles.circle}>
+                <p>Shop now</p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className={styles.featuredImg}>
-          <Image
-            src={imgSrc}
-            alt={name}
-            width={400}
-            height={500}
-            quality={100}
-            layout="responsive"
-            priority
-          />
-          <p className={styles.checkOut}>
-            Check out <br /> this collection
-          </p>
+
+          <div className={styles.rightHero}>
+            <div className={styles.featuredImg}>
+              <Image
+                src={imgSrc}
+                alt={name}
+                width={200}
+                height={240}
+                quality={100}
+                layout="responsive"
+                priority
+              />
+              <p className={styles.checkOut}>
+                Check out <br /> this collection
+              </p>
+            </div>
+          </div>
+
           <ul className={styles.socialLinks}>
             <li>
               <a href="#">Facebook</a>
@@ -62,29 +74,28 @@ const Home: NextPage<Props> = (props) => {
               <a href="#">Twitter</a>
             </li>
           </ul>
-        </div>
 
-        <span>
-          <p>Explore</p>
-          <img src="" alt="" />
-        </span>
-      </>
+          <span className={styles.explore}>
+            <p>Explore</p>
+            <img src={"./static/icons/down-arrow.png"} alt={"down arrow"} />
+          </span>
+        </div>
+      </section>
     );
   };
 
   return (
-    <section className={styles.landingSection}>
-      <div className={styles.container}>
-        <div className={styles.renderHero}>{renderHero()}</div>
-      </div>
-    </section>
+    <main className={styles.landingSection}>
+      {renderHero()}
+      <NewProducts dresses={dresses} />
+    </main>
   );
 };
 
 export async function getStaticProps() {
   const featured = await sanityClient.fetch(featuredQuery);
-  const jackets = await sanityClient.fetch(jacketsQuery);
-  return { props: { featured, jackets } };
+  const dresses = await sanityClient.fetch(dressesQuery);
+  return { props: { featured, dresses } };
 }
 
 export default Home;
