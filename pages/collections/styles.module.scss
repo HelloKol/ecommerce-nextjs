@@ -1,0 +1,39 @@
+@import "../../scss/variables";
+@import "../../scss/layout";
+.collectionSection {
+  @include section-spacing();
+}
+.container {
+  @include responsive-container();
+}
+.collectionList {
+  list-style: none;
+}
+.collectionItems {
+  .collection {
+    display: flex;
+  }
+  .arrowHide {
+    display: none;
+  }
+}
+.title {
+  margin: 0;
+  padding: 70px 0;
+  font-size: clamp(3rem, 6.5vw, 6.5rem);
+}
+// -----------------MOBILE---------------------------
+@media screen and (min-width: $smallMobile) {
+}
+// -----------------LARGE MOBILE---------------------------
+@media screen and (min-width: $largeMobile) {
+}
+// -----------------TABLET---------------------------
+@media screen and (min-width: $tablet) {
+}
+// -----------------DESKTOP---------------------------
+@media screen and (min-width: $desktop) {
+}
+// -----------------HD DESKTOP---------------------------
+@media screen and (min-width: $hdDesktop) {
+}

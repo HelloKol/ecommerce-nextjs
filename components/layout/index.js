@@ -9,7 +9,7 @@ export default class Layout extends Component {
       <main>
         <Header />
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </main>
     );
   }
