@@ -12,18 +12,16 @@ const navigationLinks = [
   { name: "men", path: "/" },
   { name: "women", path: "/" },
   { name: "salve", path: "/" },
-  { name: "collections", path: "/" },
+  { name: "collections", path: "/collections" },
   { name: "search", path: "/" },
   { name: "cart", path: "/" },
 ];
 
 const variants = {
   open: {
-    // height: 10,
     display: "block",
   },
   closed: {
-    // height: 0,
     display: "none",
   },
 };

@@ -1,9 +1,6 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import styles from "./styles.module.scss";
-import { sanityClient, urlFor } from "../../../lib/sanity";
-import fallbackImg from "../../../public/static/media/image_not_found.jpg";
-import { AllProductsType } from "../../../types/types";
 
 const LookBook: NextPage = () => {
   return (

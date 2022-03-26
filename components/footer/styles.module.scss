@@ -1,0 +1,83 @@
+// components
+@import "../../scss/variables";
+@import "../../scss/layout";
+.footerSection {
+  color: white;
+  background-color: black;
+  @include section-spacing();
+}
+.container {
+  @include responsive-container();
+}
+.topFooter,
+.bottomFooter {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.footerLinks {
+  list-style-type: none;
+  li a {
+    color: white;
+    text-decoration: none;
+    line-height: 30px;
+  }
+}
+.bottomFooter {
+  display: flex;
+  justify-content: space-between;
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+}
+// -----------------MOBILE---------------------------
+@media screen and (min-width: $smallMobile) {
+  .form {
+    width: 100%;
+    margin-top: 60px;
+    h3 {
+      text-transform: uppercase;
+    }
+    input {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      color: white;
+      background: none;
+      outline: none;
+      border: none;
+      width: 100%;
+      border-bottom: 2px solid rgb(53, 53, 53);
+    }
+  }
+}
+// -----------------LARGE MOBILE---------------------------
+@media screen and (min-width: $largeMobile) {
+  .topFooter {
+    @include grid(12, $rowLarge, $colLarge);
+  }
+  .title,
+  .footerLinks {
+    grid-column: 1 / span 5;
+  }
+  .form {
+    grid-column: 6/ -1;
+    margin-top: 0;
+  }
+}
+// -----------------TABLET---------------------------
+@media screen and (min-width: $tablet) {
+}
+// -----------------DESKTOP---------------------------
+@media screen and (min-width: $desktop) {
+  .form {
+    grid-column: 7/ -1;
+  }
+}
+// -----------------HD DESKTOP---------------------------
+@media screen and (min-width: $hdDesktop) {
+  .form {
+    grid-column: 9/ -1;
+  }
+}
