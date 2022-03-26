@@ -54,7 +54,7 @@
 // -----------------MOBILE---------------------------
 @media screen and (min-width: $smallMobile) {
   .container {
-    @include grid(1, $rowSmall, $rowSmall);
+    @include grid(1, $rowSmall, $colSmall);
   }
   .featuredImg {
     padding-left: 20px;

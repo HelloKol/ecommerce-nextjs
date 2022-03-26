@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useSpring, useTransition, animated, config } from "react-spring";
 import { sanityClient, urlFor } from "../lib/sanity";
 
-import { NewProducts } from "../components";
+import { NewProducts, About } from "../components";
 import { FeaturedType, AllProductsType } from "../types/types";
 import { featuredQuery, dressesQuery } from "../services";
 import styles from "./styles.module.scss";
@@ -88,6 +88,7 @@ const Home: NextPage<Props> = (props) => {
     <main className={styles.landingSection}>
       {renderHero()}
       <NewProducts dresses={dresses} />
+      <About />
     </main>
   );
 };
