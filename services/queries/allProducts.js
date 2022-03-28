@@ -12,6 +12,7 @@ const jacketsQuery = `*[_type == "jackets"]{
 const dressesQuery = `*[_type == "dresses"]{
     _id,
     name,
+    slug,
     gender,
     color,
     price,

@@ -6,32 +6,32 @@ const arr = [
   {
     id: 0,
     title: "collection 1",
-    image: "https://picsum.photos/id/1/200/300",
+    image: "https://picsum.photos/id/1/1920/1920",
   },
   {
     id: 1,
     title: "collection 2",
-    image: "https://picsum.photos/id/2/200/300",
+    image: "https://picsum.photos/id/2/1920/1920",
   },
   {
     id: 2,
     title: "collection 3",
-    image: "https://picsum.photos/id/3/200/300",
+    image: "https://picsum.photos/id/3/1920/1920",
   },
   {
     id: 3,
     title: "collection 4",
-    image: "https://picsum.photos/id/4/200/300",
+    image: "https://picsum.photos/id/4/1920/1920",
   },
   {
     id: 4,
     title: "collection 5",
-    image: "https://picsum.photos/id/5/200/300",
+    image: "https://picsum.photos/id/5/1920/1920",
   },
   {
     id: 5,
     title: "collection 6",
-    image: "https://picsum.photos/id/6/200/300",
+    image: "https://picsum.photos/id/6/1920/1920",
   },
 ];
 
@@ -58,16 +58,16 @@ const Collections: NextPage = () => {
           onMouseEnter={() => handleMouseEnter(index)}
           onMouseLeave={() => handleMouseLeave(index)}
         >
-          <div className={styles.collection}>
+          <div className={styles.imgWrapper}>
             <img
-              className={`${
-                isHovered[index] ? styles.arrowShow : styles.arrowHide
+              className={`${styles.img} ${
+                isHovered[index] ? styles.imgShow : styles.imgHide
               }`}
               src={image}
               alt=""
             />
-            <h1 className={styles.title}>{title}</h1>
           </div>
+          <h1 className={styles.title}>{title}</h1>
           <hr />
         </li>
       );

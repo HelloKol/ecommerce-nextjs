@@ -8,6 +8,7 @@ export interface FeaturedType{
 export interface AllProductsType{
     _id:string
     name:string
+    slug:[]
     gender:string
     color:string
     price:number

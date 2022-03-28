@@ -5,22 +5,35 @@
 }
 .container {
   @include responsive-container();
+  margin-right: 0 !important;
 }
 .collectionList {
   list-style: none;
 }
 .collectionItems {
-  .collection {
-    display: flex;
+  .imgWrapper {
+    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 53.5%;
+    right: 0;
+    bottom: 0;
+    width: 50vh;
+    height: 100vh;
+    pointer-events: none;
   }
-  .arrowHide {
+  .img {
+    height: 100%;
+    object-fit: cover;
+  }
+  .imgHide {
     display: none;
   }
 }
 .title {
   margin: 0;
   padding: 70px 0;
-  font-size: clamp(3rem, 6.5vw, 6.5rem);
+  font-size: 6.5vw;
 }
 // -----------------MOBILE---------------------------
 @media screen and (min-width: $smallMobile) {

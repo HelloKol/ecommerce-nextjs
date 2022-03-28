@@ -6,4 +6,6 @@ import LookBook from "./home/Look book";
 import FollowUs from './home/Follow us';
 import Footer from './footer';
 
+
+
 export { Layout, Header, NewProducts, About, LookBook, FollowUs, Footer };

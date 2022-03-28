@@ -5,6 +5,7 @@ import { sanityClient, urlFor } from "../../../lib/sanity";
 import styles from "./styles.module.scss";
 import fallbackImg from "../../../public/static/media/image_not_found.jpg";
 import { useRef, useState } from "react";
+import Link from "next/link";
 
 interface DressesProp {
   dresses: AllProductsType[];
@@ -17,20 +18,23 @@ const NewProducts: NextPage<DressesProp> = ({ dresses }) => {
       .map((item) => {
         const { _id, name, image, price } = item;
         const imgSrc = image != null ? urlFor(image).url() : fallbackImg;
+        console.log(item.slug);
         return (
-          <li key={_id} className={styles.productItem}>
-            <div className={styles.imagWrapper}>
-              <Image
-                src={imgSrc}
-                alt={name}
-                width={300}
-                height={400}
-                objectFit={"cover"}
-              />
-            </div>
-            <p>{name && name.slice(0, 23)}</p>
-            <p>{price && price}</p>
-          </li>
+          <Link href={`/product/${item.slug.current}`}>
+            <li key={_id} className={styles.productItem}>
+              <div className={styles.imagWrapper}>
+                <Image
+                  src={imgSrc}
+                  alt={name}
+                  width={300}
+                  height={400}
+                  objectFit={"cover"}
+                />
+              </div>
+              <p>{name && name.slice(0, 23)}</p>
+              <p>{price && price}</p>
+            </li>
+          </Link>
         );
       })
       .sort(() => Math.random() - 0.8);
