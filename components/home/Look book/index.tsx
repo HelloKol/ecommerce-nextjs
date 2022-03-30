@@ -5,11 +5,11 @@ import { sanityClient, urlFor } from "../../../lib/sanity";
 import fallbackImg from "../../../public/static/media/image_not_found.jpg";
 import { AllProductsType } from "../../../types/types";
 
-interface CoatsProp {
+interface ProductProps {
   lookBook: AllProductsType[];
 }
 
-const LookBook: NextPage<CoatsProp> = ({ lookBook }) => {
+const LookBook: NextPage<ProductProps> = ({ lookBook }) => {
   const renderProducts = () => {
     const products = lookBook.slice(14, 17).map((item) => {
       const { _id, name, image, price } = item;

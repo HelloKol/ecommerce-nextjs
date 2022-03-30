@@ -12,14 +12,11 @@ import styles from "./styles.module.scss";
 interface FeaturedInterface {
   featured: FeaturedType[];
 }
-
-interface DressesInterface {
+interface ProductProps {
   dresses: AllProductsType[];
   coats: AllProductsType[];
 }
-type Props = FeaturedInterface & DressesInterface;
-
-const collectionTitle = ["Summer 2022", "new collection"];
+type Props = FeaturedInterface & ProductProps;
 
 const Home: NextPage<Props> = (props) => {
   const { featured, dresses, coats } = props;

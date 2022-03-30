@@ -8,11 +8,19 @@ export interface FeaturedType{
 export interface AllProductsType{
     _id:string
     name:string
-    slug:[]
+    slug: {
+        current:string,
+        _type:string
+    }
     gender:string
     color:string
     price:number
     stock:number
-    image?:string
+    image: {
+        asset: {
+          _id: string;
+          url: string;
+        };
+      };
     description:string
 }

@@ -7,18 +7,17 @@ import fallbackImg from "../../../public/static/media/image_not_found.jpg";
 import { useRef, useState } from "react";
 import Link from "next/link";
 
-interface DressesProp {
+type ProductProps = {
   dresses: AllProductsType[];
-}
+};
 
-const NewProducts: NextPage<DressesProp> = ({ dresses }) => {
+const NewProducts: NextPage<ProductProps> = ({ dresses }) => {
   const renderProducts = () => {
     const products = dresses
       .slice(0, 10)
       .map((item) => {
         const { _id, name, image, price } = item;
         const imgSrc = image != null ? urlFor(image).url() : fallbackImg;
-        console.log(item.slug);
         return (
           <Link href={`/product/${item.slug.current}`}>
             <li key={_id} className={styles.productItem}>
@@ -29,6 +28,7 @@ const NewProducts: NextPage<DressesProp> = ({ dresses }) => {
                   width={300}
                   height={400}
                   objectFit={"cover"}
+                  loading="lazy"
                 />
               </div>
               <p>{name && name.slice(0, 23)}</p>
