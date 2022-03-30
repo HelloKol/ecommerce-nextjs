@@ -4,7 +4,7 @@
   @include section-spacing();
 }
 .container {
-  @include responsive-container();
+  @include container-responsive();
   margin-right: 0 !important;
 }
 .collectionList {

@@ -7,7 +7,7 @@
   @include section-spacing();
 }
 .container {
-  @include responsive-container();
+  @include container-responsive();
 }
 .title {
   font-size: clamp(2rem, 4.8vw, 6rem);

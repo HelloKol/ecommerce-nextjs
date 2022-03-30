@@ -20,7 +20,6 @@ type Props = FeaturedInterface & ProductProps;
 
 const Home: NextPage<Props> = (props) => {
   const { featured, dresses, coats } = props;
-
   const renderHero = () => {
     const { name, description, image } = featured[0];
     const fallBack = "https://bit.ly/3i1Ga5W";

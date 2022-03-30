@@ -1,17 +1,25 @@
 // components
-@import "../../../scss/variables";
-@import "../../../scss/layout";
-
-// pages
 @import "../../scss/variables";
 @import "../../scss/layout";
 
 // -----------------GLOBAL---------------------------
-.heroSection {
+.productSection {
   @include section-spacing();
 }
 .container {
   @include container-responsive();
+  @include grid-responsive();
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+.productImage {
+  grid-column: 1 / -1;
+}
+.productInfo {
+  grid-column: 1 / -1;
+}
+.title {
+  font-size: clamp(2rem, 3vw, 3.5vw);
 }
 // -----------------MOBILE---------------------------
 @media screen and (min-width: $smallMobile) {
@@ -21,6 +29,12 @@
 }
 // -----------------TABLET---------------------------
 @media screen and (min-width: $tablet) {
+  .productImage {
+    grid-column: 1 / span 6;
+  }
+  .productInfo {
+    grid-column: 7 / -1;
+  }
 }
 // -----------------DESKTOP---------------------------
 @media screen and (min-width: $desktop) {

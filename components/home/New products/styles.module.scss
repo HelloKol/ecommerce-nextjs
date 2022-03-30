@@ -5,7 +5,7 @@
   @include section-spacing();
 }
 .container {
-  @include responsive-container();
+  @include container-responsive();
 }
 .productsList {
   margin: 0 auto;

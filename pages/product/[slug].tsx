@@ -9,11 +9,33 @@ type ProductProps = {
 };
 
 const Product: NextPage<ProductProps> = ({ product }) => {
-  const { _id, name, slug, price, image, description } = product;
+  const { _id, name, slug, price, stock, image, description } = product;
   const imgSrc = image != null ? urlFor(image).url() : "";
+  console.log(product);
   return (
     <main>
-      <h1>{name}</h1>
+      <section className={styles.productSection}>
+        <div className={styles.container}>
+          <div className={styles.productImage}>
+            <Image
+              src={imgSrc}
+              alt={name}
+              width={300}
+              height={300}
+              quality={100}
+              objectFit="contain"
+              layout="responsive"
+              priority
+            />
+          </div>
+          <div className={styles.productInfo}>
+            <p>Status: In Stock</p>
+            <h1 className={styles.title}>{name}</h1>
+            {/* <p>{description}</p> */}
+            <h2 className={styles.price}>{price}</h2>
+          </div>
+        </div>
+      </section>
     </main>
   );
 };

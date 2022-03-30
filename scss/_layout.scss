@@ -4,7 +4,8 @@
   padding-top: 20px;
   padding-bottom: 20px;
 }
-@mixin responsive-container {
+
+@mixin container-responsive {
   @media screen and (min-width: $smallMobile) {
     margin-left: 20px;
     margin-right: 20px;
@@ -27,9 +28,28 @@
     // max-width: 1400px;
   }
 }
+
 @mixin grid($columns, $rowGap, $columnGap) {
   display: grid;
   row-gap: $rowGap;
   column-gap: $columnGap;
   grid-template-columns: repeat($columns, 1fr);
+}
+
+@mixin grid-responsive {
+  @media screen and (min-width: $smallMobile) {
+    @include grid(12, $rowSmall, $colSmall);
+  }
+  @media screen and (min-width: $largeMobile) {
+    @include grid(12, $rowLarge, $colLarge);
+  }
+  @media screen and (min-width: $tablet) {
+    @include grid(12, $rowTablet, $colTablet);
+  }
+  @media screen and (min-width: $desktop) {
+    @include grid(12, $rowDesktop, $colDesktop);
+  }
+  @media screen and (min-width: $hdDesktop) {
+    @include grid(12, $rowHD, $colHD);
+  }
 }

@@ -14,6 +14,7 @@ export interface AllProductsType{
     }
     gender:string
     color:string
+    sizes:[]
     price:number
     stock:number
     image: {

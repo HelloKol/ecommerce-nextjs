@@ -16,7 +16,7 @@ const NewProducts: NextPage<ProductProps> = ({ dresses }) => {
     const products = dresses
       .slice(0, 10)
       .map((item) => {
-        const { _id, name, image, price } = item;
+        const { _id, name, slug, price, stock, image, description } = item;
         const imgSrc = image != null ? urlFor(image).url() : fallbackImg;
         return (
           <Link href={`/product/${item.slug.current}`}>
