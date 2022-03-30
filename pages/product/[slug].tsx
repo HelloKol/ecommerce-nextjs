@@ -10,6 +10,8 @@ type ProductProps = {
 
 const Product: NextPage<ProductProps> = ({ product }) => {
   if (product === undefined || product === null) return null;
+
+  console.log(product);
   const { _id, name, slug, price, stock, image, description } = product;
   const imgSrc = image != null ? urlFor(image).url() : "";
   return (
@@ -22,10 +24,9 @@ const Product: NextPage<ProductProps> = ({ product }) => {
               alt={name}
               width={300}
               height={300}
-              quality={100}
               objectFit="contain"
               layout="responsive"
-              priority={true}
+              priority
             />
           </div>
           <div className={styles.productInfo}>
@@ -33,6 +34,8 @@ const Product: NextPage<ProductProps> = ({ product }) => {
             <h1 className={styles.title}>{name}</h1>
             {/* <p>{description}</p> */}
             <h2 className={styles.price}>{price}</h2>
+
+            <button className={styles.addToCart}>add to cart</button>
           </div>
         </div>
       </section>
