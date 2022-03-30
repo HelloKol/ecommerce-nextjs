@@ -9,9 +9,9 @@ type ProductProps = {
 };
 
 const Product: NextPage<ProductProps> = ({ product }) => {
+  if (product === undefined || product === null) return null;
   const { _id, name, slug, price, stock, image, description } = product;
   const imgSrc = image != null ? urlFor(image).url() : "";
-  console.log(product);
   return (
     <main>
       <section className={styles.productSection}>
@@ -25,7 +25,7 @@ const Product: NextPage<ProductProps> = ({ product }) => {
               quality={100}
               objectFit="contain"
               layout="responsive"
-              priority
+              priority={true}
             />
           </div>
           <div className={styles.productInfo}>
