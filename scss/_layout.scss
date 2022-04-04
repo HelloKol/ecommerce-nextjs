@@ -53,3 +53,35 @@
     @include grid(12, $rowHD, $colHD);
   }
 }
+
+@mixin three-column-feed-lookbook($items) {
+  @for $i from 1 through $items {
+    @if $i % 2 == 1 {
+      .lookBookItem-#{$i} {
+        grid-column: 1;
+        grid-row: $i;
+      }
+    } @else {
+      .lookBookItem-#{$i} {
+        grid-column: 3;
+        grid-row: $i;
+      }
+    }
+  }
+}
+
+@mixin three-column-feed-products($items) {
+  @for $i from 1 through $items {
+    @if $i % 2 == 1 {
+      .products-#{$i} {
+        grid-column: 1;
+        grid-row: $i;
+      }
+    } @else {
+      .products-#{$i} {
+        grid-column: 3;
+        grid-row: $i;
+      }
+    }
+  }
+}

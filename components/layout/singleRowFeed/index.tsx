@@ -1,19 +1,20 @@
-import type { NextPage } from "next";
+import { NextPage } from "next";
 import Image from "next/image";
-import { AllProductsType } from "../../../types/types";
-import { sanityClient, urlFor } from "../../../lib/sanity";
-import styles from "./styles.module.scss";
-import fallbackImg from "../../../public/static/media/image_not_found.jpg";
-import { useRef, useState } from "react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { urlFor } from "../../../lib/sanity";
+import { AllProductsType } from "../../../types/types";
+import fallbackImg from "../../../public/static/media/image_not_found.jpg";
+import styles from "./styles.module.scss";
 
 type ProductProps = {
-  dresses: AllProductsType[];
+  mainHeader: string;
+  products: AllProductsType[];
 };
 
-const NewProducts: NextPage<ProductProps> = ({ dresses }) => {
+const singleRowFeed: NextPage<ProductProps> = ({ products, mainHeader }) => {
   const renderProducts = () => {
-    const products = dresses
+    const allProducts = products
       .slice(0, 10)
       .map((item) => {
         const { _id, name, slug, price, stock, image, description } = item;
@@ -38,17 +39,17 @@ const NewProducts: NextPage<ProductProps> = ({ dresses }) => {
         );
       })
       .sort(() => Math.random() - 0.8);
-    return <ul className={styles.productsList}>{products}</ul>;
+    return <ul className={styles.productsList}>{allProducts}</ul>;
   };
 
   return (
-    <section className={styles.arrivalsSection}>
+    <section className={styles.productsSection}>
       <div className={styles.container}>
-        <h1 className={styles.title}>New Arrivals</h1>
+        <h1 className={styles.title}>{mainHeader}</h1>
         {renderProducts()}
       </div>
     </section>
   );
 };
 
-export default NewProducts;
+export default singleRowFeed;

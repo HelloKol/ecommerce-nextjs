@@ -1,76 +1,68 @@
 import { NextPage } from "next";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import { useSpringCarousel } from "react-spring-carousel";
+import { sanityClient, urlFor } from "../../lib/sanity";
+import { CollectionsType } from "../../types/types";
 import styles from "./styles.module.scss";
-import imgTest from "../../public/static/media/about-girl.jpg";
 
-const mockedItems = [
-  {
-    id: "0",
-    title: "collection 1",
-    image: "https://picsum.photos/id/1/1920/1920",
-  },
-  {
-    id: "1",
-    title: "collection 2",
-    image: "https://picsum.photos/id/2/1920/1920",
-  },
-  {
-    id: "2",
-    title: "collection 3",
-    image: "https://picsum.photos/id/3/1920/1920",
-  },
-  {
-    id: "3",
-    title: "collection 4",
-    image: "https://picsum.photos/id/4/1920/1920",
-  },
-  {
-    id: "4",
-    title: "collection 5",
-    image: "https://picsum.photos/id/5/1920/1920",
-  },
-  {
-    id: " 5",
-    title: "collection 6",
-    image: "https://picsum.photos/id/6/1920/1920",
-  },
-];
+type CollectionsProps = {
+  collections: CollectionsType[];
+};
 
-const Collections: NextPage = () => {
-  // carousel
+const Collections: NextPage<CollectionsProps> = ({ collections }) => {
+  const renderCollections = () => {
+    return (
+      collections &&
+      collections
+        .map((item) => ({
+          id: item._id,
+          renderItem: (
+            <div className={styles.items} key={item._id}>
+              <div className={styles.imgWrapper}>
+                <Image
+                  src={item.image != null ? urlFor(item.image).url() : ""}
+                  alt={item.name}
+                  width={800}
+                  height={500}
+                  objectFit="cover"
+                  quality={100}
+                  className={styles.img}
+                />
+                <h1 className={styles.title}>{item.name}</h1>
+              </div>
+            </div>
+          ),
+        }))
+        .reverse()
+    );
+  };
+
   const { carouselFragment } = useSpringCarousel({
     withLoop: true,
     carouselSlideAxis: "y",
-    items: mockedItems.map((item) => ({
-      id: item.id,
-      renderItem: (
-        <div className={styles.items} key={item.id}>
-          <div className={styles.imgWrapper}>
-            <Image
-              src={imgTest}
-              alt={item.title}
-              width={500}
-              height={500}
-              objectFit="contain"
-              quality={100}
-              className={styles.img}
-            />
-            {/* <h1 className={styles.title}>{item.title}</h1> */}
-          </div>
-        </div>
-      ),
-    })),
+    items: renderCollections(),
   });
 
   return (
     <section className={styles.collectionSection}>
-      <div className={styles.container}>
-        <div className={styles.collectionList}>{carouselFragment}</div>
-      </div>
+      <div className={styles.container}>{carouselFragment}</div>
     </section>
   );
 };
+
+export async function getStaticProps() {
+  const collectionsQuery = `*[_type == "collection"]{
+    _id,
+    name,
+    gender,
+    image,
+}`;
+  const collections = await sanityClient.fetch(collectionsQuery);
+  return {
+    props: {
+      collections,
+    },
+  };
+}
 
 export default Collections;

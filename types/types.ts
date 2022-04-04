@@ -5,6 +5,13 @@ export interface FeaturedType{
     description:string
 }
 
+export interface CollectionsType{
+  _id:string
+  name:string
+  gender:string
+  image:string
+}
+
 export interface AllProductsType{
     _id:string
     name:string
