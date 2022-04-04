@@ -1,85 +1,68 @@
 import { NextPage } from "next";
-import { useEffect, useState } from "react";
+import Image from "next/image";
+import { useSpringCarousel } from "react-spring-carousel";
+import { sanityClient, urlFor } from "../../lib/sanity";
+import { CollectionsType } from "../../types/types";
 import styles from "./styles.module.scss";
 
-const arr = [
-  {
-    id: 0,
-    title: "collection 1",
-    image: "https://picsum.photos/id/1/1920/1920",
-  },
-  {
-    id: 1,
-    title: "collection 2",
-    image: "https://picsum.photos/id/2/1920/1920",
-  },
-  {
-    id: 2,
-    title: "collection 3",
-    image: "https://picsum.photos/id/3/1920/1920",
-  },
-  {
-    id: 3,
-    title: "collection 4",
-    image: "https://picsum.photos/id/4/1920/1920",
-  },
-  {
-    id: 4,
-    title: "collection 5",
-    image: "https://picsum.photos/id/5/1920/1920",
-  },
-  {
-    id: 5,
-    title: "collection 6",
-    image: "https://picsum.photos/id/6/1920/1920",
-  },
-];
+type CollectionsProps = {
+  collections: CollectionsType[];
+};
 
-const Collections: NextPage = () => {
-  const [isHovered, setIsHovered] = useState({} as any);
+const Collections: NextPage<CollectionsProps> = ({ collections }) => {
+  const renderCollections = () => {
+    return (
+      collections &&
+      collections
+        .map((item) => ({
+          id: item._id,
+          renderItem: (
+            <div className={styles.items} key={item._id}>
+              <div className={styles.imgWrapper}>
+                <Image
+                  src={item.image != null ? urlFor(item.image).url() : ""}
+                  alt={item.name}
+                  width={800}
+                  height={500}
+                  objectFit="cover"
+                  quality={100}
+                  className={styles.img}
+                />
+                <h1 className={styles.title}>{item.name}</h1>
+              </div>
+            </div>
+          ),
+        }))
+        .reverse()
+    );
+  };
 
-  const handleMouseEnter = (index: any) => {
-    setIsHovered((prev: any) => {
-      return { ...prev, [index]: true };
-    });
-  };
-  const handleMouseLeave = (index: any) => {
-    setIsHovered((prev: any) => {
-      return { ...prev, [index]: false };
-    });
-  };
-  const renderCollections = () =>
-    arr.map((item, index) => {
-      const { id, title, image } = item;
-      return (
-        <li
-          className={`${styles.collectionItems}`}
-          key={index}
-          onMouseEnter={() => handleMouseEnter(index)}
-          onMouseLeave={() => handleMouseLeave(index)}
-        >
-          <div className={styles.imgWrapper}>
-            <img
-              className={`${styles.img} ${
-                isHovered[index] ? styles.imgShow : styles.imgHide
-              }`}
-              src={image}
-              alt=""
-            />
-          </div>
-          <h1 className={styles.title}>{title}</h1>
-          <hr />
-        </li>
-      );
-    });
+  const { carouselFragment } = useSpringCarousel({
+    withLoop: true,
+    carouselSlideAxis: "y",
+    items: renderCollections(),
+  });
 
   return (
     <section className={styles.collectionSection}>
-      <div className={styles.container}>
-        <ul className={styles.collectionList}>{renderCollections()}</ul>
-      </div>
+      <div className={styles.container}>{carouselFragment}</div>
     </section>
   );
 };
+
+export async function getStaticProps() {
+  const collectionsQuery = `*[_type == "collection"]{
+    _id,
+    name,
+    gender,
+    image,
+}`;
+  const collections = await sanityClient.fetch(collectionsQuery);
+  return {
+    props: {
+      collections,
+    },
+  };
+}
 
 export default Collections;

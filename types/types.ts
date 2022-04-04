@@ -5,14 +5,30 @@ export interface FeaturedType{
     description:string
 }
 
+export interface CollectionsType{
+  _id:string
+  name:string
+  gender:string
+  image:string
+}
+
 export interface AllProductsType{
     _id:string
     name:string
-    slug:[]
+    slug: {
+        current:string,
+        _type:string
+    }
     gender:string
     color:string
+    sizes:[]
     price:number
     stock:number
-    image?:string
+    image: {
+        asset: {
+          _id: string;
+          url: string;
+        };
+      };
     description:string
 }

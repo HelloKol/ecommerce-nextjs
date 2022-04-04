@@ -1,0 +1,36 @@
+// components
+@import "../../scss/variables";
+@import "../../scss/layout";
+
+// -----------------GLOBAL---------------------------
+.shopSection {
+  @include section-spacing();
+}
+.container {
+  @include container-responsive();
+}
+.productsList {
+  list-style: none;
+}
+
+// -----------------MOBILE---------------------------
+@media screen and (min-width: $smallMobile) {
+}
+// -----------------LARGE MOBILE---------------------------
+@media screen and (min-width: $largeMobile) {
+}
+// -----------------TABLET---------------------------
+@media screen and (min-width: $tablet) {
+  .productsList {
+    @include grid(3, $rowTablet, $colTablet);
+    @include three-column-feed-products(10);
+  }
+}
+// -----------------DESKTOP---------------------------
+@media screen and (min-width: $desktop) {
+  @include grid(3, $rowDesktop, $colDesktop);
+}
+// -----------------HD DESKTOP---------------------------
+@media screen and (min-width: $hdDesktop) {
+  @include grid(3, $rowHD, $colHD);
+}

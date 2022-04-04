@@ -3,12 +3,17 @@
 
 // -----------------GLOBAL---------------------------
 .landingSection,
-.heroSection {
+.heroSection,
+.lookBookSection,
+.followUsSection {
   @include section-spacing();
 }
-.container {
-  @include responsive-container();
+.container,
+.lookBookcontainer,
+.followUscontainer {
+  @include container-responsive();
 }
+// HERO SECTION
 .title {
   font-size: clamp(2rem, 4.8vw, 6rem);
 }
@@ -51,6 +56,11 @@
   }
 }
 
+// LOOK BOOK SECTION
+.lookBookList {
+  list-style: none;
+}
+
 // -----------------MOBILE---------------------------
 @media screen and (min-width: $smallMobile) {
   .container {
@@ -80,6 +90,29 @@
       width: 20px;
     }
   }
+
+  // look book section
+  .lookBookItem {
+    padding-bottom: 30px;
+  }
+
+  // follow us section
+  .followImages {
+    @include grid(4, $rowSmall, $colSmall);
+    .imgOne {
+      grid-column: 1/ -1;
+    }
+    .flexImages {
+      grid-column: 1 / -1;
+      @include grid(4, $rowSmall, $colSmall);
+      .imgTwo {
+        grid-column: 1 / span 2;
+      }
+      .imgThree {
+        grid-column: 3/ -1;
+      }
+    }
+  }
 }
 // -----------------LARGE MOBILE---------------------------
 @media screen and (min-width: $largeMobile) {
@@ -97,6 +130,18 @@
   }
   .checkOut {
     display: block;
+  }
+
+  // look book section
+  .lookBookList {
+    margin-top: 50px;
+    @include grid(3, $rowTablet, $colTablet);
+    @include three-column-feed-lookbook(3);
+  }
+
+  // follow us section
+  .followImages {
+    @include grid(4, $rowLarge, $colLarge);
   }
 }
 // -----------------TABLET---------------------------
@@ -135,11 +180,43 @@
     padding-left: 40px;
     grid-column: 6 / span 1;
   }
+
+  // follow us section
+  .followImages {
+    @include grid(4, $rowTablet, $colTablet);
+    .imgOne {
+      max-width: 600px;
+      grid-column: 1 / span 2;
+    }
+    .flexImages {
+      max-width: 500px;
+      grid-column: 3 / -1;
+      .imgTwo {
+        grid-column: 1 / 3;
+      }
+      .imgThree {
+        grid-column: 3/-1;
+        grid-row: 2;
+      }
+    }
+  }
 }
 // -----------------DESKTOP---------------------------
 @media screen and (min-width: $desktop) {
   .container {
     @include grid(12, $rowDesktop, $colDesktop);
+  }
+
+  // look book section
+  .lookBookList {
+    .lookBookItem {
+      margin-top: 100px;
+    }
+  }
+
+  // follow us section
+  .followImages {
+    @include grid(4, $rowDesktop, $colDesktop);
   }
 }
 // -----------------HD DESKTOP---------------------------
@@ -153,5 +230,10 @@
   }
   .rightHero {
     grid-column: 6 / -2;
+  }
+
+  // follow us section
+  .followImages {
+    @include grid(4, $rowHD, $colHD);
   }
 }

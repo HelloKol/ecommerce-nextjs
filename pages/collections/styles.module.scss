@@ -1,40 +1,51 @@
 @import "../../scss/variables";
 @import "../../scss/layout";
+
 .collectionSection {
-  @include section-spacing();
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .container {
-  @include responsive-container();
-  margin-right: 0 !important;
+  cursor: pointer;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: scroll;
+  scroll-snap-type: y mandatory;
+  align-items: center;
+  scroll-behavior: smooth;
+  // hide scroll bar
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
-.collectionList {
-  list-style: none;
+.container::-webkit-scrollbar {
+  display: none;
 }
-.collectionItems {
+.items {
+  scroll-snap-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
   .imgWrapper {
-    position: absolute;
-    position: fixed;
-    top: 0;
-    left: 53.5%;
-    right: 0;
-    bottom: 0;
-    width: 50vh;
+    width: 100vw;
     height: 100vh;
+  }
+  .imgWrapper > span {
+    min-height: 100vh;
+  }
+  .title {
+    color: white;
     pointer-events: none;
-  }
-  .img {
-    height: 100%;
-    object-fit: cover;
-  }
-  .imgHide {
-    display: none;
+    font-size: clamp(2rem, 3vw, 4vw);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
-.title {
-  margin: 0;
-  padding: 70px 0;
-  font-size: 6.5vw;
-}
+
 // -----------------MOBILE---------------------------
 @media screen and (min-width: $smallMobile) {
 }
@@ -43,6 +54,21 @@
 }
 // -----------------TABLET---------------------------
 @media screen and (min-width: $tablet) {
+  .items {
+    .imgWrapper {
+      width: 800px;
+      height: 500px;
+      .img {
+        transition: 0.4s ease-in-out;
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+    .imgWrapper > span {
+      min-height: auto;
+    }
+  }
 }
 // -----------------DESKTOP---------------------------
 @media screen and (min-width: $desktop) {

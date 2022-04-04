@@ -5,7 +5,7 @@ import createSchema from "part:@sanity/base/schema-creator";
 import schemaTypes from "all:part:@sanity/base/schema-type";
 
 // My schemas
-import { jackets, dresses, hoodies, coats, trousers, featured } from "./Custom";
+import { jackets, dresses, hoodies, coats, trousers, featured, collections } from "./Custom";
 
 export default createSchema({
   name: "default",
@@ -16,5 +16,6 @@ export default createSchema({
     coats,
     trousers,
     featured,
+    collections,
   ]),
 });

@@ -1,49 +1,40 @@
-// components
-@import "../../../scss/variables";
 @import "../../../scss/layout";
 
-.lookSection {
+.productsSection {
   @include section-spacing();
 }
 .container {
-  @include responsive-container();
+  @include container-responsive();
 }
 .productsList {
+  margin: 0 auto;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 2.5rem;
+  padding: 1rem;
+  overflow-y: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
   list-style: none;
 }
+.productItem {
+  scroll-snap-align: start;
+  width: 300px;
+  max-width: none;
+  object-fit: contain;
+}
+
 // -----------------MOBILE---------------------------
 @media screen and (min-width: $smallMobile) {
-  .productItem {
-    padding-bottom: 30px;
-  }
 }
 // -----------------LARGE MOBILE---------------------------
 @media screen and (min-width: $largeMobile) {
 }
 // -----------------TABLET---------------------------
 @media screen and (min-width: $tablet) {
-  .productsList {
-    @include grid(3, $rowTablet, $colTablet);
-    .productItem {
-      margin-top: 50px;
-    }
-    .productItem:nth-child(2) {
-      grid-column: 3;
-      grid-row: 2;
-    }
-    .productItem:nth-child(3) {
-      grid-column: 1;
-      grid-row: 3;
-    }
-  }
 }
 // -----------------DESKTOP---------------------------
 @media screen and (min-width: $desktop) {
-  .productsList {
-    .productItem {
-      margin-top: 100px;
-    }
-  }
 }
 // -----------------HD DESKTOP---------------------------
 @media screen and (min-width: $hdDesktop) {

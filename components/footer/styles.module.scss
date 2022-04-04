@@ -7,7 +7,7 @@
   @include section-spacing();
 }
 .container {
-  @include responsive-container();
+  @include container-responsive();
 }
 .topFooter,
 .bottomFooter {

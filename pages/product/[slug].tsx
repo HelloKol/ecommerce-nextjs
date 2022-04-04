@@ -1,22 +1,46 @@
-import { useRef } from "react";
 import type { NextPage } from "next";
 import Image from "next/image";
+import { AllProductsType } from "../../types/types";
 import { sanityClient, urlFor } from "../../lib/sanity";
 import styles from "./styles.module.scss";
 
-const dressesQuery = `*[_type == "dresses" && slug.current  == $slug][0] {
-    _id,
-    name,
-    slug,
-    price,
-    image,
-    description,
-}`;
+type ProductProps = {
+  product: AllProductsType;
+};
 
-const Product = ({ product }) => {
-  const { _id, name, slug, price, image, description } = product;
+const Product: NextPage<ProductProps> = ({ product }) => {
+  if (product === undefined || product === null) return null;
+
   console.log(product);
-  return <main>asdasd</main>;
+  const { _id, name, slug, price, stock, image, description } = product;
+  const imgSrc = image != null ? urlFor(image).url() : "";
+  return (
+    <main>
+      <section className={styles.productSection}>
+        <div className={styles.container}>
+          <div className={styles.productImage}>
+            <Image
+              src={imgSrc}
+              alt={name}
+              width={300}
+              height={300}
+              objectFit="contain"
+              layout="responsive"
+              priority
+            />
+          </div>
+          <div className={styles.productInfo}>
+            <p>Status: In Stock</p>
+            <h1 className={styles.title}>{name}</h1>
+            {/* <p>{description}</p> */}
+            <h2 className={styles.price}>{price}</h2>
+
+            <button className={styles.addToCart}>add to cart</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
 };
 
 export async function getStaticPaths() {
@@ -32,10 +56,24 @@ export async function getStaticPaths() {
     fallback: true,
   };
 }
-export async function getStaticProps({ params }) {
-  const { slug } = params;
-  const product = await sanityClient.fetch(dressesQuery, { slug });
 
+type pathParams = {
+  params: {
+    slug: string;
+  };
+};
+
+export async function getStaticProps({ params }: pathParams) {
+  const { slug } = params;
+  const dressesQuery = `*[_type == "dresses" && slug.current  == $slug][0] {
+    _id,
+    name,
+    slug,
+    price,
+    image,
+    description,
+}`;
+  const product = await sanityClient.fetch(dressesQuery, { slug });
   return {
     props: {
       product,
